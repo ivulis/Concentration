@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.jazepsivulis.concentration.repository.model.GamePiece" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/game_piece"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        app:cardBackgroundColor="@{item.isMatched ? @color/lime_green : item.isFlipped ? @color/white : @color/purple_700}"
+        app:cardCornerRadius="@dimen/corner_radius_normal"
+        app:cardElevation="@dimen/elevation_normal">
+
+        <TextView
+            android:id="@+id/value"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text="@{item.isFlipped || item.isMatched ? item.valueString() : null}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large" />
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

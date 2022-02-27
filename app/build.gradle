@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -12,10 +13,14 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "TEST", "\"TEST\""
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.jazepsivulis.concentration.common.MockRunner"
     }
-
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -32,12 +37,48 @@ android {
 }
 
 dependencies {
-
+    // Android
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+
+    // Fragment navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+
+    // Room database
+    implementation 'androidx.room:room-runtime:2.4.2'
+    implementation 'androidx.room:room-ktx:2.4.2'
+    kapt 'androidx.room:room-compiler:2.4.2'
+
+    // Injections
+    kapt 'com.google.dagger:dagger-compiler:2.41'
+    kapt 'com.google.dagger:dagger-android-processor:2.41'
+    implementation 'com.google.dagger:dagger-android-support:2.41'
+
+    // Logging
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Unit Testing
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'io.mockk:mockk:1.12.2'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0-native-mt'
+    testImplementation 'app.cash.turbine:turbine:0.7.0'
+
+    // UI Testing
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.41'
+    kaptAndroidTest 'com.google.dagger:dagger-android-processor:2.41'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
+    androidTestImplementation('com.adevinta.android:barista:4.2.0') {
+        exclude group: 'org.jetbrains.kotlin' // library stuff
+    }
 }
