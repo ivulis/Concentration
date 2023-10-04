@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Concentration</string>
+    <string name="end_game">End game</string>
+    <string name="go_back">Go back</string>
+    <string name="easy_game">Easy game</string>
+    <string name="medium_game">Medium game</string>
+    <string name="hard_game">Hard game</string>
+    <string name="high_scores">High scores</string>
+    <string name="card_flipped">Card is already flipped!</string>
+    <string name="guess_template">Guesses: %1$d</string>
+    <string name="game_over">Game Over! Playing time: %1$s. Guesses: %2$d.</string>
+    <string name="playing_time">Playing time: %1$s</string>
+    <string name="guess_high_score">Guesses: %1$s</string>
 </resources>
